@@ -8,13 +8,17 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.android.travelwriter.databinding.ActivityMainBinding
+import com.example.android.travelwriter.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
+    private lateinit var binding : FragmentDetailsBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container,
+            false)
+        return binding.root
     }
 }

@@ -17,12 +17,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
         drawerLayout = binding.drawerLayout
 
+        //setting the drawer
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
+
+        //setting Action Bar title
+        if (supportActionBar!=null) {
+            supportActionBar!!.title = "TravelWriter"
+            supportActionBar!!.subtitle = "by Aryan"
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

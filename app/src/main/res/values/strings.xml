@@ -12,5 +12,8 @@
     <string name="drawerDrafts">Drafts</string>
     <string name="drawerDetails">Details</string>
     <string name="drawerAbout">About</string>
-    <string name="aboutText">TODO</string>
+    <string name="aboutPageTitle"><u>About</u></string>
+    <string name="aboutText">Welcome to TravelWriter!\nHere you can write Articles about your
+        travels or anything else and post them. This helps you to remember all the important
+        happenings and share them with others.</string>
 </resources>

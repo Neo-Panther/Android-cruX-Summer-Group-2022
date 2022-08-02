@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.android.travelwriter.databinding.FragmentFirstTimeBinding
 
 class FirstTimeFragment : Fragment() {
@@ -21,9 +22,14 @@ class FirstTimeFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentFirstTimeBinding>(inflater, R.layout.fragment_first_time,
         container, false)
 
-        binding.proceedButton.setOnClickListener(
-            Navigation.createNavigateOnClickListener(FirstTimeFragmentDirections.actionFirstTimeFragmentToMainFragment())
-        )
+        binding.proceedButton.setOnClickListener{
+            if (binding.enterName.length() != 0){
+                binding.enterName.error = null
+                it.findNavController().navigate(FirstTimeFragmentDirections.actionFirstTimeFragmentToMainFragment())
+            } else {
+                binding.enterName.error = "Please enter your name"
+            }
+        }
         return binding.root
     }
 }

@@ -2,5 +2,6 @@
 <resources>
     <dimen name="normalMargin">16dp</dimen>
     <dimen name="normalPadding">6dp</dimen>
-    <dimen name="largeText">25sp</dimen>
+    <dimen name="largeText">29sp</dimen>
+    <dimen name="normalText">20sp</dimen>
 </resources>

@@ -18,7 +18,7 @@ class AddArticleFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding= DataBindingUtil.inflate<FragmentAddArticleBinding>(inflater, R.layout.fragment_add_article,
+        binding= DataBindingUtil.inflate(inflater, R.layout.fragment_add_article,
         container, false)
 
         binding.postButton.setOnClickListener(
