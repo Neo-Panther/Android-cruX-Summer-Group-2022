@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/draftsFragment"
+        android:icon="@drawable/ic_draft_icon"
+        android:title="@string/drawerDrafts" />
+    <item
+        android:id="@+id/detailsFragment"
+        android:icon="@drawable/ic_baseline_description_24"
+        android:title="@string/drawerDetails" />
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_about_icon"
+        android:title="@string/drawerAbout" />
+</menu>

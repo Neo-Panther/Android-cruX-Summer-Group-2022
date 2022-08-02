@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/firstTimeFragment">
+
+    <fragment
+        android:id="@+id/addArticleFragment"
+        android:name="com.example.android.travelwriter.AddArticleFragment"
+        android:label="AddArticleFragment" >
+        <action
+            android:id="@+id/action_addArticleFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_addArticleFragment_to_draftsFragment"
+            app:destination="@id/draftsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.android.travelwriter.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_addArticleFragment"
+            app:destination="@id/addArticleFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_draftsFragment"
+            app:destination="@id/draftsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/draftsFragment"
+        android:name="com.example.android.travelwriter.DraftsFragment"
+        android:label="DraftsFragment" >
+        <action
+            android:id="@+id/action_draftsFragment_to_addArticleFragment"
+            app:destination="@id/addArticleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstTimeFragment"
+        android:name="com.example.android.travelwriter.FirstTimeFragment"
+        android:label="FirstTimeFragment" >
+        <action
+            android:id="@+id/action_firstTimeFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/firstTimeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.example.android.travelwriter.ArticleFragment"
+        android:label="ArticleFragment" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.android.travelwriter.AboutFragment"
+        android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.android.travelwriter.DetailsFragment"
+        android:label="DetailsFragment" />
+</navigation>

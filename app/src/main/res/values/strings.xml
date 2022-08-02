@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TravelWriter</string>
+    <string name="titleHint">Title</string>
+    <string name="bodyHint">Body</string>
+    <string name="createPostText">Create Post</string>
+    <string name="saveAsDraftText">Save as Draft</string>
+    <string name="welcomeText">Welcome to TravelWriter!\nPlease enter your name:</string>
+    <string name="nameHint">Name</string>
+    <string name="proceedButtonText">PROCEED</string>
+    <string name="travel_writer">TravelWriter</string>
+    <string name="addArticleButtonDescription">Go to Add Article Page</string>
+    <string name="drawerDrafts">Drafts</string>
+    <string name="drawerDetails">Details</string>
+    <string name="drawerAbout">About</string>
+    <string name="aboutText">TODO</string>
+</resources>
