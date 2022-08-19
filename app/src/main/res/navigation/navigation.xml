@@ -13,7 +13,9 @@
             app:destination="@id/mainFragment" />
         <action
             android:id="@+id/action_addArticleFragment_to_draftsFragment"
-            app:destination="@id/draftsFragment" />
+            app:destination="@id/draftsFragment"
+            app:popUpTo="@id/addArticleFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="articleKey"
             app:argType="long"

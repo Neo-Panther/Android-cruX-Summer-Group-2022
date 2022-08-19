@@ -27,7 +27,9 @@ class DraftsFragment : Fragment() {
 
         val viewModelFactory = DraftsViewModelFactory(dataSource)
         val viewModel = ViewModelProvider(this, viewModelFactory)[DraftsViewModel::class.java]
-        val adapter = DraftsAdapter()
+        val adapter = DraftsAdapter(ArticleClickListener { articleId ->
+            viewModel.delete(articleId)
+        })
 
         binding.lifecycleOwner = this
         binding.draftsList.adapter = adapter

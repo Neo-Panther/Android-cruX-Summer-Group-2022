@@ -19,7 +19,8 @@ class DraftsDiffCallback: DiffUtil.ItemCallback<Article>(){
 
 }
 
-class DraftsAdapter: ListAdapter<Article, RecyclerView.ViewHolder>(DraftsDiffCallback()) {
+class DraftsAdapter(private val clickListener: ArticleClickListener)
+    : ListAdapter<Article, RecyclerView.ViewHolder>(DraftsDiffCallback()) {
 
     //private val adapterScope = CoroutineScope(Dispatchers.Default)
 
@@ -31,7 +32,7 @@ class DraftsAdapter: ListAdapter<Article, RecyclerView.ViewHolder>(DraftsDiffCal
         when (holder) {
             is ViewHolder -> {
                 val item = getItem((position)) as Article
-                holder.bind(item)
+                holder.bind(item, clickListener)
             }
         }
     }
@@ -46,10 +47,16 @@ class DraftsAdapter: ListAdapter<Article, RecyclerView.ViewHolder>(DraftsDiffCal
         }
 
         fun bind(
-            item: Article
+            item: Article,
+            clickListener: ArticleClickListener
         ){
             binding.article = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
     }
+}
+
+class ArticleClickListener(val clickListener: (articleId: Long) -> Unit){
+    fun onClickDelete(article: Article) = clickListener(article.id)
 }

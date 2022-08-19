@@ -8,6 +8,10 @@
             name="article"
             type="com.example.android.travelwriter.database.Article" />
 
+        <variable
+            name="clickListener"
+            type="com.example.android.travelwriter.drafts.ArticleClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,6 +44,7 @@
             android:layout_marginStart="@dimen/normalMargin"
             android:layout_marginEnd="@dimen/normalMargin"
             android:contentDescription="@string/createPostText"
+            android:onClick="@{() -> clickListener.onClickDelete(article)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
