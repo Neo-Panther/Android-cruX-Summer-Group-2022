@@ -11,8 +11,6 @@ import kotlinx.coroutines.launch
 class FirstTimeViewModel(
     private val sharedPrefs: SharedPreferences
 ): ViewModel() {
-    private val username = sharedPrefs.getString(USERNAME_KEY, null)
-
     private var _navigateToMain = MutableLiveData<Boolean>()
     val navigateToMain: LiveData<Boolean>
         get() = _navigateToMain
@@ -20,7 +18,7 @@ class FirstTimeViewModel(
         _navigateToMain.value = false
     }
     init {
-        _navigateToMain.value = username!=null
+        _navigateToMain.value = false
     }
 
     fun onProceed(data: String){

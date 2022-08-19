@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.android.travelwriter.databinding.ActivityMainBinding
+import com.example.android.travelwriter.main.MainFragmentDirections
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -21,10 +22,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding= DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val sharedPrefs = this.getPreferences(Context.MODE_PRIVATE)
+        val username = sharedPrefs.getString(USERNAME_KEY, null)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
@@ -35,35 +36,38 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = binding.drawerLayout
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
-        navController.addOnDestinationChangedListener{ _: NavController, nd: NavDestination, _: Bundle? ->
-            if (nd.id == R.id.mainFragment) {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-                supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_hamburger_menu)
-            }
-        }
-
         //setting the drawer
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
 
+        if (username == null){
+            navController.navigate(
+                MainFragmentDirections.actionMainFragmentToFirstTimeFragment()
+            )
+        }
+        navController.addOnDestinationChangedListener{ _: NavController, nd: NavDestination, _: Bundle? ->
+            if (nd.id == R.id.mainFragment) {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            } else {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
+            if (nd.id == R.id.firstTimeFragment){
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                supportActionBar?.setHomeButtonEnabled(false)
+            }
+        }
+
         //setting Action Bar title
         supportActionBar?.let{ bar ->
-            bar.setDisplayHomeAsUpEnabled(false)
-            bar.title = "TravelWriter"
-            sharedPrefs.getString(USERNAME_KEY, null)?.let { name ->
+            username?.let { name ->
                 bar.subtitle = "by $name"
             }
-
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.navHostFragment)
         return NavigationUI.navigateUp(navController, drawerLayout)
-    }
-
-    fun makeHomeMain(){
-        graph.setStartDestination(R.id.mainFragment)
     }
 
     companion object {

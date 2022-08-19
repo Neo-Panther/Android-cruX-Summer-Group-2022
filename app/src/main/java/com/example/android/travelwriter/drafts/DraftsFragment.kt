@@ -40,7 +40,6 @@ class DraftsFragment : Fragment() {
             }
         }
 
-        (activity as AppCompatActivity).supportActionBar?.title="My Drafts"
         return binding.root
     }
 }

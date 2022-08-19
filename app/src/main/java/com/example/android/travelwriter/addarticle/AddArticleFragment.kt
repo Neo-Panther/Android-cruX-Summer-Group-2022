@@ -64,7 +64,6 @@ class AddArticleFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.addArticleViewModel = viewModel
 
-        (activity as AppCompatActivity).supportActionBar?.title="New Article"
         return binding.root
     }
 }

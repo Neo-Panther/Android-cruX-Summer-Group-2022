@@ -19,7 +19,6 @@ class AboutFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_about, container,
             false)
 
-        (activity as AppCompatActivity).supportActionBar?.title="About"
         return binding.root
     }
 }

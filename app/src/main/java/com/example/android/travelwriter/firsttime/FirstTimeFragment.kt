@@ -41,17 +41,13 @@ class FirstTimeFragment : Fragment() {
 
         viewModel.navigateToMain.observe(viewLifecycleOwner) { go ->
             if (go) {
-                with (activity as MainActivity) {
-                    makeHomeMain()
-                }
-                    this.findNavController().navigate(
-                        FirstTimeFragmentDirections.actionFirstTimeFragmentToMainFragment()
-                    )
-                    viewModel.doneNavigating()
-                }
+                this.findNavController().navigate(
+                    FirstTimeFragmentDirections.actionFirstTimeFragmentToMainFragment()
+                )
+                viewModel.doneNavigating()
             }
+        }
 
-        (activity as AppCompatActivity).supportActionBar?.title="Welcome to TravelWriter"
         return binding.root
     }
 }

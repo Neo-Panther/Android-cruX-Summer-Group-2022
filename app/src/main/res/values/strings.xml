@@ -17,4 +17,11 @@
         travels or anything else and post them. This helps you to remember all the important
         happenings and share them with others.</string>
     <string name="deleteButtonDescription">Delete Draft</string>
+    <string name="firstTimeLabel">Welcome to TravelWriter</string>
+    <string name="mainLabel">TravelWriter</string>
+    <string name="addArticleLabel">New Article</string>
+    <string name="draftsLabel">My Drafts</string>
+    <string name="aboutLabel">About TravelWriter</string>
+    <string name="articleLabel">Article</string>
+    <string name="detailsLabel">Details</string>
 </resources>
