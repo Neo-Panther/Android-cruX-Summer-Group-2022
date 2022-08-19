@@ -18,8 +18,7 @@
                 android:layout_height="match_parent"
                 android:label="@string/travel_writer"
                 tools:layout="@layout/fragment_main"
-                app:defaultNavHost="true"
-                app:navGraph="@navigation/navigation"/>
+                app:defaultNavHost="true"/>
         </LinearLayout>
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navView"

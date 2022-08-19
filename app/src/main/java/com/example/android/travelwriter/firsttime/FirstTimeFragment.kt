@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.android.travelwriter.MainActivity
 import com.example.android.travelwriter.R
 import com.example.android.travelwriter.databinding.FragmentFirstTimeBinding
 
@@ -40,14 +41,17 @@ class FirstTimeFragment : Fragment() {
 
         viewModel.navigateToMain.observe(viewLifecycleOwner) { go ->
             if (go) {
-                this.findNavController().navigate(
-                    FirstTimeFragmentDirections.actionFirstTimeFragmentToMainFragment()
-                )
-                viewModel.doneNavigating()
+                with (activity as MainActivity) {
+                    makeHomeMain()
+                }
+                    this.findNavController().navigate(
+                        FirstTimeFragmentDirections.actionFirstTimeFragmentToMainFragment()
+                    )
+                    viewModel.doneNavigating()
+                }
             }
-        }
 
-        (activity as AppCompatActivity).supportActionBar?.title="Welcome"
+        (activity as AppCompatActivity).supportActionBar?.title="Welcome to TravelWriter"
         return binding.root
     }
 }
