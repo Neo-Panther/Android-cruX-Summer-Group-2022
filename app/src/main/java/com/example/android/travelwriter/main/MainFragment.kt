@@ -1,13 +1,14 @@
-package com.example.android.travelwriter
+package com.example.android.travelwriter.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.example.android.travelwriter.R
 import com.example.android.travelwriter.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -17,13 +18,14 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate<FragmentMainBinding>(inflater, R.layout.fragment_main,
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main,
         container, false)
 
         binding.addArticleButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(MainFragmentDirections.actionMainFragmentToAddArticleFragment())
         )
 
+        (activity as AppCompatActivity).supportActionBar?.title="TravelWriter"
         return binding.root
     }
 }

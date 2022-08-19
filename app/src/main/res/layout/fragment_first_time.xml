@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/welcomeTextBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/normalMargin"
-        android:layout_marginTop="@dimen/normalMargin"
-        android:layout_marginEnd="@dimen/normalMargin"
-        android:padding="@dimen/normalPadding"
-        android:text="@string/welcomeText"
-        android:textSize="@dimen/largeText"
-        app:layout_constraintBottom_toTopOf="@+id/enterName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        <TextView
+            android:id="@+id/welcomeTextBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normalMargin"
+            android:layout_marginTop="@dimen/normalMargin"
+            android:layout_marginEnd="@dimen/normalMargin"
+            android:padding="@dimen/normalPadding"
+            android:text="@string/welcomeText"
+            android:textSize="@dimen/largeText"
+            app:layout_constraintBottom_toTopOf="@+id/enterName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <EditText
-        android:id="@+id/enterName"
-        android:autofillHints="username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/normalMargin"
-        android:layout_marginTop="@dimen/normalMargin"
-        android:layout_marginEnd="@dimen/normalMargin"
-        android:ems="10"
-        android:hint="@string/nameHint"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/proceedButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTextBox" />
+        <EditText
+            android:id="@+id/enterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normalMargin"
+            android:layout_marginTop="@dimen/normalMargin"
+            android:layout_marginEnd="@dimen/normalMargin"
+            android:autofillHints="username"
+            android:ems="10"
+            android:hint="@string/nameHint"
+            android:inputType="textPersonName"
+            android:maxLength="20"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/proceedButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcomeTextBox" />
 
-    <Button
-        android:id="@+id/proceedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/normalMargin"
-        android:layout_marginTop="@dimen/normalMargin"
-        android:layout_marginEnd="@dimen/normalMargin"
-        android:text="@string/proceedButtonText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterName" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/proceedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normalMargin"
+            android:layout_marginTop="@dimen/normalMargin"
+            android:layout_marginEnd="@dimen/normalMargin"
+            android:text="@string/proceedButtonText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enterName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

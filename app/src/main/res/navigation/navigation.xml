@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/addArticleFragment"
-        android:name="com.example.android.travelwriter.AddArticleFragment"
+        android:name="com.example.android.travelwriter.addarticle.AddArticleFragment"
         android:label="AddArticleFragment" >
         <action
             android:id="@+id/action_addArticleFragment_to_mainFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.android.travelwriter.MainFragment"
+        android:name="com.example.android.travelwriter.main.MainFragment"
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_addArticleFragment"
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/draftsFragment"
-        android:name="com.example.android.travelwriter.DraftsFragment"
+        android:name="com.example.android.travelwriter.drafts.DraftsFragment"
         android:label="DraftsFragment" >
         <action
             android:id="@+id/action_draftsFragment_to_addArticleFragment"
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/firstTimeFragment"
-        android:name="com.example.android.travelwriter.FirstTimeFragment"
+        android:name="com.example.android.travelwriter.firsttime.FirstTimeFragment"
         android:label="FirstTimeFragment" >
         <action
             android:id="@+id/action_firstTimeFragment_to_mainFragment"
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.example.android.travelwriter.ArticleFragment"
+        android:name="com.example.android.travelwriter.article.ArticleFragment"
         android:label="ArticleFragment" />
     <fragment
         android:id="@+id/aboutFragment"
@@ -63,6 +63,6 @@
         android:label="AboutFragment" />
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.android.travelwriter.DetailsFragment"
+        android:name="com.example.android.travelwriter.details.DetailsFragment"
         android:label="DetailsFragment" />
 </navigation>

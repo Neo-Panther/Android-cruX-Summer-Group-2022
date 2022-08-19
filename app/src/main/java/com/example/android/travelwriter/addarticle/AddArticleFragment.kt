@@ -1,13 +1,14 @@
-package com.example.android.travelwriter
+package com.example.android.travelwriter.addarticle
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.example.android.travelwriter.R
 import com.example.android.travelwriter.databinding.FragmentAddArticleBinding
 
 class AddArticleFragment : Fragment() {
@@ -27,6 +28,8 @@ class AddArticleFragment : Fragment() {
         binding.draftButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(AddArticleFragmentDirections.actionAddArticleFragmentToDraftsFragment())
         )
+
+        (activity as AppCompatActivity).supportActionBar?.title="New Article"
         return binding.root
     }
 }

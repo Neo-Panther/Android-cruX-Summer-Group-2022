@@ -1,5 +1,6 @@
 package com.example.android.travelwriter
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -15,12 +16,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         binding= DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        val sharedPrefs = this.getPreferences(Context.MODE_PRIVATE)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
         drawerLayout = binding.drawerLayout
+
 
         //setting the drawer
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
@@ -29,12 +35,19 @@ class MainActivity : AppCompatActivity() {
         //setting Action Bar title
         if (supportActionBar!=null) {
             supportActionBar!!.title = "TravelWriter"
-            supportActionBar!!.subtitle = "by Aryan"
+            sharedPrefs.getString(USERNAME_KEY, null)?.let {
+                supportActionBar!!.subtitle = "by $it"
+            }
+
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.navHostFragment)
         return NavigationUI.navigateUp(navController, drawerLayout)
+    }
+
+    companion object {
+        const val USERNAME_KEY = "UserName"
     }
 }

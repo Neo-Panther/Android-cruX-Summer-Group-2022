@@ -1,13 +1,12 @@
-package com.example.android.travelwriter
+package com.example.android.travelwriter.details
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.android.travelwriter.databinding.ActivityMainBinding
+import com.example.android.travelwriter.R
 import com.example.android.travelwriter.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
