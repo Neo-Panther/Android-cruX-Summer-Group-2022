@@ -54,8 +54,7 @@ class AddArticleViewModel(
         viewModelScope.launch {
             val newArticle = Article()
             newArticle.author = username
-            insert(newArticle)
-            currentDraft.value = getCurrentDraftFromDatabase()
+            currentDraft.value = newArticle
         }
     }
 
@@ -67,7 +66,7 @@ class AddArticleViewModel(
             _validInput.value = true
         }
         viewModelScope.launch {
-            update(currentDraft.value!!)
+            insert(currentDraft.value!!)
         }
         _navigateToMain.value=true
     }
@@ -79,24 +78,14 @@ class AddArticleViewModel(
             _validInput.value = true
         }
         viewModelScope.launch {
-            update(currentDraft.value!!)
+            insert(currentDraft.value!!)
         }
         _navigateToDrafts.value=true
     }
 
-    private suspend fun getCurrentDraftFromDatabase(): Article {
-        return withContext(Dispatchers.IO){
-            return@withContext database.getCurrentDraft()
-        }
-    }
     private suspend fun insert(article: Article){
         withContext(Dispatchers.IO){
             database.insertArticle(article)
-        }
-    }
-    private suspend fun update(article: Article){
-        withContext(Dispatchers.IO){
-            database.updateArticle(article)
         }
     }
 }

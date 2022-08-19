@@ -20,9 +20,6 @@ interface ArticleDao {
     @Query("SELECT * FROM drafts ORDER BY id DESC")
     fun getAllArticles(): LiveData<List<Article>>
 
-    @Query("SELECT * FROM drafts ORDER BY id DESC LIMIT 1")
-    fun getCurrentDraft(): Article
-
     @Query("DELETE FROM drafts WHERE id=:id")
     fun deleteArticleWithId(id: Long)
 }
