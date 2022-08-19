@@ -12,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp">
+        android:layout_height="110dp"
+        android:layout_marginTop="@dimen/smallMargin">
 
         <TextView
             android:id="@+id/articleTitle"
@@ -22,8 +23,8 @@
             android:layout_marginEnd="@dimen/normalMargin"
             android:fontFamily="sans-serif-medium"
             android:padding="@dimen/normalPadding"
-            android:text="@{article.title}"
             android:textSize="@dimen/largeText"
+            app:articleTitleString="@{article}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/deleteButton"
             app:layout_constraintHorizontal_bias="0.5"
