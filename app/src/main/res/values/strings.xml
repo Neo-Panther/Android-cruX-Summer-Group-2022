@@ -24,4 +24,5 @@
     <string name="aboutLabel">About TravelWriter</string>
     <string name="articleLabel">Article</string>
     <string name="detailsLabel">Details</string>
+    <string name="editButtonDescription">Edit Draft</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.travelwriter.database.Article
 import com.example.android.travelwriter.databinding.DraftRowBinding
+import com.example.android.travelwriter.generated.callback.OnClickListener
 
 class DraftsDiffCallback: DiffUtil.ItemCallback<Article>(){
     override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -57,6 +58,8 @@ class DraftsAdapter(private val clickListener: ArticleClickListener)
     }
 }
 
-class ArticleClickListener(val clickListener: (articleId: Long) -> Unit){
-    fun onClickDelete(article: Article) = clickListener(article.id)
+class ArticleClickListener(val clickDeleteListener: (articleId: Long) -> Unit,
+                           val clickEditListener: (articleId: Long) -> Unit){
+    fun onClickDelete(article: Article) = clickDeleteListener(article.id)
+    fun onClickEdit(article: Article) = clickEditListener(article.id)
 }

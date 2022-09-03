@@ -1,5 +1,6 @@
 package com.example.android.travelwriter.addarticle
 
+import android.provider.SyncStateContract.Helpers.insert
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,7 @@ import com.example.android.travelwriter.database.ArticleDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.nio.file.Files.delete
 
 class AddArticleViewModel(
     private val database: ArticleDao,
@@ -45,7 +47,15 @@ class AddArticleViewModel(
             createNewArticle()
         } else {
             viewModelScope.launch {
-                currentDraft.value = database.getArticle(articleKey)
+                var temp: Article?
+                withContext(Dispatchers.IO) {
+                    temp = database.getArticle(articleKey)
+                }
+                if (temp != null){
+                    currentDraft.value = temp!!
+                } else {
+                    createNewArticle()
+                }
             }
         }
     }
@@ -66,7 +76,11 @@ class AddArticleViewModel(
             _validInput.value = true
         }
         viewModelScope.launch {
+            if (articleKey != -1L) {
+                delete(articleKey)
+            }
             insert(currentDraft.value!!)
+            // TODO Instead of above, write to firestore db
         }
         _navigateToMain.value=true
     }
@@ -86,6 +100,12 @@ class AddArticleViewModel(
     private suspend fun insert(article: Article){
         withContext(Dispatchers.IO){
             database.insertArticle(article)
+        }
+    }
+
+    private suspend fun delete(articleId: Long){
+        withContext(Dispatchers.IO){
+            database.deleteArticleWithId(articleId)
         }
     }
 }

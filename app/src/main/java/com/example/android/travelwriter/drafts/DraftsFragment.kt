@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.android.travelwriter.R
 import com.example.android.travelwriter.database.ArticleDatabase
 import com.example.android.travelwriter.databinding.FragmentDraftsBinding
@@ -26,9 +28,9 @@ class DraftsFragment : Fragment() {
 
         val viewModelFactory = DraftsViewModelFactory(dataSource)
         val viewModel = ViewModelProvider(this, viewModelFactory)[DraftsViewModel::class.java]
-        val adapter = DraftsAdapter(ArticleClickListener { articleId ->
+        val adapter = DraftsAdapter(ArticleClickListener( {articleId ->
             viewModel.delete(articleId)
-        })
+        }, {articleId -> this.findNavController().navigate(DraftsFragmentDirections.actionDraftsFragmentToAddArticleFragment(articleId))}))
 
         binding.lifecycleOwner = this
         binding.draftsList.adapter = adapter
