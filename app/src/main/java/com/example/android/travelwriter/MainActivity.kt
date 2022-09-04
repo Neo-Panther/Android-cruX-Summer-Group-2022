@@ -10,8 +10,11 @@ import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.android.travelwriter.BuildConfig.BASE_URL
 import com.example.android.travelwriter.databinding.ActivityMainBinding
 import com.example.android.travelwriter.main.MainFragmentDirections
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
