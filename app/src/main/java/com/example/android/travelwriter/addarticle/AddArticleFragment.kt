@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -57,6 +58,20 @@ class AddArticleFragment : Fragment() {
                 binding.editTitle.error = "Article must have a title"
             } else {
                 binding.editTitle.error = null
+            }
+        }
+        viewModel.status.observe(viewLifecycleOwner) { state ->
+            when(state) {
+                PostStatus.POSTING -> {
+                    Toast.makeText(application.applicationContext, "Posting Article...", Toast.LENGTH_SHORT).show()
+                }
+                PostStatus.DONE -> {
+                    Toast.makeText(application.applicationContext, "Article Posted", Toast.LENGTH_SHORT).show()
+                }
+                PostStatus.ERROR -> {
+                    Toast.makeText(application.applicationContext, "Error: Check Internet Connection", Toast.LENGTH_SHORT).show()
+                }
+                else -> {}
             }
         }
 

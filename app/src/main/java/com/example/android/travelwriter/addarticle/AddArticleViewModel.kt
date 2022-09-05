@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.travelwriter.database.Article
 import com.example.android.travelwriter.database.ArticleDao
+import com.example.android.travelwriter.network.ArticleJson
 import com.example.android.travelwriter.network.PostsApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,8 +25,8 @@ class AddArticleViewModel(
     private val username: String
 ): ViewModel() {
 
-    private val _status = MutableLiveData<PostStatus>()
-    val status: LiveData<PostStatus>
+    private val _status = MutableLiveData<PostStatus?>()
+    val status: LiveData<PostStatus?>
         get() = _status
 
     private val _navigateToMain = MutableLiveData<Boolean>()
@@ -52,7 +53,7 @@ class AddArticleViewModel(
         _navigateToMain.value = false
         _navigateToDrafts.value = false
         _validInput.value =true
-        _status.value = PostStatus.DONE
+        _status.value = null
 
         if(articleKey==-1L){
             createNewArticle()
@@ -92,18 +93,21 @@ class AddArticleViewModel(
                 delete(articleKey)
             }
             try {
-                Log.d("write result", postToDB(currentDraft.value!!).code().toString())
-                _status.value = PostStatus.DONE
+                 val response = postToDB(currentDraft.value!!)
+                 if (response.isSuccessful) {
+                     _status.value = PostStatus.DONE
+                     _navigateToMain.value = true
+                 } else {
+                     _status.value = PostStatus.ERROR
+                 }
             } catch (t: Throwable) {
                 _status.value = PostStatus.ERROR
             }
-
         }
-        _navigateToMain.value=true
     }
 
-    private suspend fun postToDB(article: Article): Response<ResponseBody> {
-        return PostsApi.retrofitService.postArticleAsync(article.author, article)
+    private suspend fun postToDB(article: Article): Response<ResponseBody>{
+        return PostsApi.retrofitService.postArticleAsync(article.author, ArticleJson(article.title, article.body))
     }
 
     fun onSaveAsDraft(){
