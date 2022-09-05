@@ -1,7 +1,5 @@
 package com.example.android.travelwriter.addarticle
 
-import android.provider.SyncStateContract.Helpers.insert
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
-import java.nio.file.Files.delete
 import retrofit2.Response
 
 enum class PostStatus {POSTING, ERROR, DONE}
