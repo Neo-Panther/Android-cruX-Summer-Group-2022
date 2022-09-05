@@ -5,7 +5,7 @@ import androidx.room.*
 
 @Dao
 interface ArticleDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertArticle(article: Article)
 
     @Update

@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 class DraftsViewModel(
     private val database: ArticleDao
 ): ViewModel() {
-    val articles = database.getAllArticles()
+    val drafts = database.getAllArticles()
 
     fun delete(articleId: Long){
         viewModelScope.launch {

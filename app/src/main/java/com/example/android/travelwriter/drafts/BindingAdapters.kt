@@ -10,3 +10,17 @@ fun TextView.setArticleTitleString(item: Article?){
         text = it.title
     }
 }
+
+@BindingAdapter("articleAuthorString")
+fun TextView.setArticleAuthorString(item: Article?){
+    item?.let {
+        text = it.author
+    }
+}
+
+@BindingAdapter("articleBodyString")
+fun TextView.setArticleBodyString(item: Article?){
+    item?.let {
+        text = it.body
+    }
+}

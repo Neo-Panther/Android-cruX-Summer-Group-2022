@@ -5,12 +5,12 @@
     <data>
 
         <variable
-            name="article"
+            name="draft"
             type="com.example.android.travelwriter.database.Article" />
 
         <variable
             name="clickListener"
-            type="com.example.android.travelwriter.drafts.ArticleClickListener" />
+            type="com.example.android.travelwriter.drafts.DraftClickListener" />
 
     </data>
 
@@ -19,50 +19,54 @@
         android:layout_height="110dp"
         android:layout_marginTop="@dimen/smallMargin">
 
-        <TextView
-            android:id="@+id/articleTitle"
-            android:layout_width="wrap_content"
+        <HorizontalScrollView
+            android:id="@+id/draftTitleScrollView"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/normalMargin"
-            android:fontFamily="sans-serif-medium"
-            android:padding="@dimen/normalPadding"
-            android:textSize="@dimen/largeText"
-            app:articleTitleString="@{article}"
+            android:layout_margin="@dimen/normalMargin"
+            android:scrollbars="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/editButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.508"
-            tools:text="Article Title" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/draftTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/normalMargin"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:padding="@dimen/normalPadding"
+                android:textSize="@dimen/largeText"
+                app:articleTitleString="@{draft}"
+                tools:text="Draft Title" />
+        </HorizontalScrollView>
 
         <ImageButton
             android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normalMargin"
             android:contentDescription="@string/editButtonDescription"
-            android:onClick="@{() -> clickListener.onClickEdit(article)}"
+            android:onClick="@{() -> clickListener.onClickEdit(draft)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/deleteButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/articleTitle"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/draftTitleScrollView"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.508"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
         <ImageButton
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/normalMargin"
+            android:layout_margin="@dimen/normalMargin"
             android:contentDescription="@string/deleteButtonDescription"
-            android:onClick="@{() -> clickListener.onClickDelete(article)}"
+            android:onClick="@{() -> clickListener.onClickDelete(draft)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/editButton"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.508"
             app:srcCompat="@android:drawable/ic_menu_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

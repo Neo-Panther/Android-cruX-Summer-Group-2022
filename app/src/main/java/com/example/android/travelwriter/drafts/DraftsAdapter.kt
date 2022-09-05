@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.travelwriter.database.Article
 import com.example.android.travelwriter.databinding.DraftRowBinding
-import com.example.android.travelwriter.generated.callback.OnClickListener
 
 class DraftsDiffCallback: DiffUtil.ItemCallback<Article>(){
     override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -20,46 +19,44 @@ class DraftsDiffCallback: DiffUtil.ItemCallback<Article>(){
 
 }
 
-class DraftsAdapter(private val clickListener: ArticleClickListener)
+class DraftsAdapter(private val clickListener: DraftClickListener)
     : ListAdapter<Article, RecyclerView.ViewHolder>(DraftsDiffCallback()) {
 
-    //private val adapterScope = CoroutineScope(Dispatchers.Default)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolder.from(parent)
+        return DraftViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ViewHolder -> {
+            is DraftViewHolder -> {
                 val item = getItem((position)) as Article
                 holder.bind(item, clickListener)
             }
         }
     }
 
-    class ViewHolder private constructor(val binding: DraftRowBinding): RecyclerView.ViewHolder(binding.root){
+    class DraftViewHolder private constructor(val binding: DraftRowBinding): RecyclerView.ViewHolder(binding.root){
         companion object{
-            fun from(parent: ViewGroup): ViewHolder{
+            fun from(parent: ViewGroup): DraftViewHolder{
                 val layoutInflater = LayoutInflater.from((parent.context))
                 val binding = DraftRowBinding.inflate(layoutInflater, parent, false)
-                return  ViewHolder(binding)
+                return  DraftViewHolder(binding)
             }
         }
 
         fun bind(
             item: Article,
-            clickListener: ArticleClickListener
+            clickListener: DraftClickListener
         ){
-            binding.article = item
+            binding.draft = item
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }
     }
 }
 
-class ArticleClickListener(val clickDeleteListener: (articleId: Long) -> Unit,
-                           val clickEditListener: (articleId: Long) -> Unit){
+class DraftClickListener(val clickDeleteListener: (articleId: Long) -> Unit,
+                         val clickEditListener: (articleId: Long) -> Unit){
     fun onClickDelete(article: Article) = clickDeleteListener(article.id)
     fun onClickEdit(article: Article) = clickEditListener(article.id)
 }

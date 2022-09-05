@@ -67,7 +67,11 @@
     <fragment
         android:id="@+id/articleFragment"
         android:name="com.example.android.travelwriter.article.ArticleFragment"
-        android:label="@string/articleLabel" />
+        android:label="@string/articleLabel" >
+        <argument
+            android:name="selectedArticle"
+            app:argType="com.example.android.travelwriter.database.Article" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.android.travelwriter.AboutFragment"
