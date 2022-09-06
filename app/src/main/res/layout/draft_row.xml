@@ -17,7 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:layout_marginTop="@dimen/smallMargin">
+        android:layout_marginTop="@dimen/smallMargin"
+        android:background="@color/articleBox">
 
         <HorizontalScrollView
             android:id="@+id/draftTitleScrollView"

@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="128dp"
         android:layout_marginTop="@dimen/smallMargin"
+        android:background="@color/articleBox"
         android:onClick="@{() -> clickListener.onClick(article)}">
 
         <HorizontalScrollView
@@ -44,7 +45,7 @@
 
         <HorizontalScrollView
             android:id="@+id/articleAuthorScrollView"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:scrollbars="horizontal"
             android:textAlignment="viewEnd"
