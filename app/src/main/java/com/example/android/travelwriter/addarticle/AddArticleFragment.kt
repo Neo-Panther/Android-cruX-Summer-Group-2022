@@ -30,9 +30,8 @@ class AddArticleFragment : Fragment() {
         val dataSource = ArticleDatabase.getInstance(application).articleDao
         val sharedPrefs = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val arguments = AddArticleFragmentArgs.fromBundle(requireArguments())
-        val username = sharedPrefs.getString(MainActivity.USERNAME_KEY, null)
 
-        val viewModelFactory = AddArticleViewModelFactory(dataSource, arguments.articleKey, username!!)
+        val viewModelFactory = AddArticleViewModelFactory(dataSource, arguments.articleKey, sharedPrefs)
         val viewModel = ViewModelProvider(this, viewModelFactory)[AddArticleViewModel::class.java]
 
         viewModel.navigateToMain.observe(viewLifecycleOwner) { go ->

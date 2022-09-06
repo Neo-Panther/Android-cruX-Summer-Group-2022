@@ -3,15 +3,12 @@ package com.example.android.travelwriter.main
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.android.travelwriter.database.Article
-import com.example.android.travelwriter.network.ArticleJson
 import com.example.android.travelwriter.network.PostsApi
 import kotlinx.coroutines.launch
 
 enum class ArticlesStatus {LOADING, ERROR, DONE}
 
 class MainViewModel: ViewModel() {
-    private val _jsonArticles = MutableLiveData<Map<String, Map<String, ArticleJson>>>()
-
     private val _articles = MutableLiveData<List<Article>>()
     val articles: LiveData<List<Article>>
         get() = _articles
@@ -31,8 +28,8 @@ class MainViewModel: ViewModel() {
     }
 
     init {
+        _status.value = ArticlesStatus.DONE
         getArticlesFormatted()
-        Log.d("response", _articles.value.toString())
     }
 
     private fun getArticlesFormatted() {

@@ -22,4 +22,7 @@ interface ArticleDao {
 
     @Query("DELETE FROM drafts WHERE id=:id")
     fun deleteArticleWithId(id: Long)
+
+    @Query("SELECT COUNT(id) FROM drafts")
+    fun getDraftsCount(): LiveData<Int>
 }

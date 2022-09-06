@@ -6,5 +6,5 @@
     <dimen name="normalText">20sp</dimen>
     <dimen name="smallMargin">10dp</dimen>
     <dimen name="normalRecyclerPadding">6dp</dimen>
-    <dimen name="smallText">11sp</dimen>
+    <dimen name="smallText">13sp</dimen>
 </resources>

@@ -1,9 +1,13 @@
 package com.example.android.travelwriter.addarticle
 
+import android.content.SharedPreferences
+import android.provider.SyncStateContract.Helpers.insert
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.travelwriter.MainActivity
 import com.example.android.travelwriter.database.Article
 import com.example.android.travelwriter.database.ArticleDao
 import com.example.android.travelwriter.network.ArticleJson
@@ -13,13 +17,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Response
+import java.nio.file.Files.delete
 
 enum class PostStatus {POSTING, ERROR, DONE}
 
 class AddArticleViewModel(
     private val database: ArticleDao,
     private val articleKey: Long,
-    private val username: String
+    private val sharedPrefs: SharedPreferences
 ): ViewModel() {
 
     private val _status = MutableLiveData<PostStatus?>()
@@ -45,6 +50,8 @@ class AddArticleViewModel(
         get() = _validInput
 
     val currentDraft = MutableLiveData<Article>()
+
+    private val username = sharedPrefs.getString(MainActivity.USERNAME_KEY, null)
 
     init {
         _navigateToMain.value = false
@@ -72,7 +79,11 @@ class AddArticleViewModel(
     private fun createNewArticle() {
         viewModelScope.launch {
             val newArticle = Article()
-            newArticle.author = username
+            if (username != null) {
+                newArticle.author = username
+            } else {
+                newArticle.author = "Anonymous"
+            }
             currentDraft.value = newArticle
         }
     }
@@ -86,13 +97,20 @@ class AddArticleViewModel(
         }
         viewModelScope.launch {
             _status.value = PostStatus.POSTING
-            if (articleKey != -1L) {
-                delete(articleKey)
-            }
             try {
                  val response = postToDB(currentDraft.value!!)
+                 val articlesCount = sharedPrefs.getInt(MainActivity.ARTICLES_COUNT_KEY, 0) + 1
                  if (response.isSuccessful) {
                      _status.value = PostStatus.DONE
+                     if (articleKey != -1L) {
+                         delete(articleKey)
+                     }
+                     withContext(Dispatchers.IO) {
+                         with(sharedPrefs.edit()) {
+                             putInt(MainActivity.ARTICLES_COUNT_KEY, articlesCount)
+                             apply()
+                         }
+                     }
                      _navigateToMain.value = true
                  } else {
                      _status.value = PostStatus.ERROR

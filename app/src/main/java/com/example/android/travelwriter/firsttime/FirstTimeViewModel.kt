@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.travelwriter.MainActivity.Companion.USERNAME_KEY
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FirstTimeViewModel(
     private val sharedPrefs: SharedPreferences
@@ -23,9 +25,11 @@ class FirstTimeViewModel(
 
     fun onProceed(data: String){
         viewModelScope.launch {
-            with(sharedPrefs.edit()) {
-                putString(USERNAME_KEY, data)
-                apply()
+            withContext(Dispatchers.IO) {
+                with(sharedPrefs.edit()) {
+                    putString(USERNAME_KEY, data)
+                    apply()
+                }
             }
         }
         _navigateToMain.value=true

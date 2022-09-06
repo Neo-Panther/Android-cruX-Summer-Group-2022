@@ -25,4 +25,6 @@
     <string name="articleLabel">Article</string>
     <string name="detailsLabel">Details</string>
     <string name="editButtonDescription">Edit Draft</string>
+    <string name="detailsTitleText"><u>Details for %1$s</u></string>
+    <string name="detailsBodyText"><i>Current Drafts Made</i>: %1$d \n\n<i>Total Articles Posted</i>: %2$d</string>
 </resources>

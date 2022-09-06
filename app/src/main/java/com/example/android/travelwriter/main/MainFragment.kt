@@ -27,6 +27,7 @@ class MainFragment : Fragment() {
         container, false)
         val adapter = MainAdapter(ArticleClickListener { article -> viewModel.displayArticle(article)})
 
+        binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.articlesList.adapter = adapter
 
@@ -43,7 +44,6 @@ class MainFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
-
         binding.addArticleButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(MainFragmentDirections.actionMainFragmentToAddArticleFragment())
         )

@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="article"
-            type="com.example.android.travelwriter.database.Article" />
+            name="viewModel"
+            type="com.example.android.travelwriter.article.ArticleViewModel" />
 
     </data>
 
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                app:articleTitleString="@{article}"
+                app:articleTitleString="@{viewModel.selectedArticle}"
                 android:textSize="@dimen/largeText"
                 tools:text="Article Title"/>
         </HorizontalScrollView>
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textSize="@dimen/smallText"
-                app:articleAuthorString="@{article}"
+                app:articleAuthorString="@{viewModel.selectedArticle}"
                 tools:text="Article Author" />
         </HorizontalScrollView>
 
@@ -67,7 +67,7 @@
                 android:id="@+id/selectedArticleBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:articleBodyString="@{article}"
+                app:articleBodyString="@{viewModel.selectedArticle}"
                 tools:text="Article Body"
                 android:textSize="@dimen/normalText" />
         </ScrollView>

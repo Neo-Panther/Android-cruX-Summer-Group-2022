@@ -67,5 +67,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val USERNAME_KEY = "UserName"
+        const val ARTICLES_COUNT_KEY = "ArticlesPostedCount"
     }
 }

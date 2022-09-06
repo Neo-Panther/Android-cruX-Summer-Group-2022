@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.android.travelwriter.R
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.travelwriter.databinding.FragmentArticleBinding
 
 class ArticleFragment : Fragment() {
@@ -16,8 +15,15 @@ class ArticleFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_article, container,
-            false)
+        binding = FragmentArticleBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+
+        val article = ArticleFragmentArgs.fromBundle(requireArguments()).selectedArticle
+
+        val viewModelFactory = ArticleViewModelFactory(article)
+        val viewModel = ViewModelProvider(this, viewModelFactory)[ArticleViewModel::class.java]
+        binding.viewModel = viewModel
+
         return binding.root
     }
 }
